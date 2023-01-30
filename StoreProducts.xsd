@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="stock-id" type="xsd:string"/>
+  <xsd:element name="store-number" type="xsd:string"/>
+  <xsd:element name="inputrec">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="store-number"/>
+        <xsd:element ref="stock-id"/>
+        <xsd:element ref="weekend-date"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="weekend-date" type="xsd:string"/>
+</xsd:schema>

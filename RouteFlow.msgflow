@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRoute.msgnode="ComIbmRoute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="RouteFlow.msgflow" nsPrefix="RouteFlow.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="RouteFlow" bundleName="RouteFlow" pluginId="RoutingApp"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/RoutingApp/icons/full/obj16/RouteFlow.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/RoutingApp/icons/full/obj30/RouteFlow.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="69,210" queueName="STORES.IN" destinationQueueManagerName="ACEQM" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="STORES"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="346,66" queueName="FAILURE" destinationQueueManagerName="ACEQM">
+        <translation xmi:type="utility:ConstantString" string="FAILURE"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="446,137" queueName="STOREA" destinationQueueManagerName="ACEQM">
+        <translation xmi:type="utility:ConstantString" string="STOREA"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="419,218" queueName="STOREB" destinationQueueManagerName="ACEQM">
+        <translation xmi:type="utility:ConstantString" string="STOREB"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="361,296" queueName="STOREC" destinationQueueManagerName="ACEQM">
+        <translation xmi:type="utility:ConstantString" string="STOREC"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRoute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="263,229">
+        <outTerminals terminalNodeID="Match" dynamic="true" label="Match"/>
+        <outTerminals terminalNodeID="StoresA" dynamic="true" label="StoresA"/>
+        <outTerminals terminalNodeID="StroresB" dynamic="true" label="StroresB"/>
+        <outTerminals terminalNodeID="StoresC" dynamic="true" label="StoresC"/>
+        <translation xmi:type="utility:ConstantString" string="Route"/>
+        <filterTable filterPattern="$Root/XMLNSC/inputrec/store-number&lt;=1000" routingOutputTerminal="StoresA"/>
+        <filterTable filterPattern="$Root/XMLNSC/inputrec/store-number>1000 and $Root/XMLNSC/inputrec/store-number&lt;=5000" routingOutputTerminal="StroresB"/>
+        <filterTable filterPattern="$Root/XMLNSC/inputrec/store-number>5000" routingOutputTerminal="StoresC"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_6" sourceTerminalName="StoresA" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_6" sourceTerminalName="StroresB" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_6" sourceTerminalName="StoresC" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>
